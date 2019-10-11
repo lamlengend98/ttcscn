@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.mobella.mapper.LoginMapper">
+
+    <select id="getPassword" parameterType="String" resultType="String">
+        select password from user where username = #{username}
+    </select>
+    <select id="login" parameterType="String" resultType="com.java.mobella.domain.reponsitory.User">
+        select * from user where username = #{username} and password = #{password}
+    </select>
+    <insert id="insertLastLogin" parameterType="com.java.mobella.domain.reponsitory.User">
+        insert into last_login(is_boss, is_admin, is_teacher, is_parent, id_grant, login_log)
+                values (#{is_boss}, #{is_admin}, #{is_teacher}, #{is_parent}, #{id_grant}, current_timestamp )
+    </insert>
+
+</mapper>

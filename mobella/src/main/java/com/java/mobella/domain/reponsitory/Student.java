@@ -16,7 +16,7 @@ public class Student {
     private int school_year;
     private int class_id;
     private int school;
-    private Boolean is_delete;
+    private int is_delete;
     private String avatar;
     private Date created_at;
     private Date updated_at;

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.mobella.mapper.MomentMapper">
+    <select id="getLstMoment" resultType="com.java.mobella.domain.reponsitory.Moment">
+        select * from moment
+    </select>
+    <select id="getMomentById" resultType="com.java.mobella.domain.reponsitory.Moment" parameterType="Integer">
+        select * from moment where id = #{id}
+    </select>
+    <insert id="insertMoment" parameterType="com.java.mobella.domain.reponsitory.Moment">
+        insert into moment(content, img, like_status, author, created_at)
+        values (#{content}, #{img}, #{like_status}, #{author}, current_timestamp)
+    </insert>
+    <update id="updateMoment" parameterType="com.java.mobella.domain.reponsitory.Moment">
+        update moment set content = #{content}, img = #{img}, like_status = #{like_status}, author = #{author}, updated_at = current_timestamp
+        where id = #{id}
+    </update>
+    <delete id="deleteMoment" parameterType="Integer">
+        delete from moment where id = #{id}
+    </delete>
+    <select id="searchMoment" parameterType="String" resultType="com.java.mobella.domain.reponsitory.Moment">
+        select * from moment where content like #{searchContent} or author like #{searchContent}
+    </select>
+</mapper>

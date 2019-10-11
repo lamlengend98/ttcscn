@@ -8,17 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
-@Controller
+@RestController
 public class LoginController {
 
-    protected static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private LoginService service;
@@ -39,6 +36,20 @@ public class LoginController {
         }
 
         return res;
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public APIResponseBase logoutUser(HttpSession session){
+        APIResponseBase responseBase = new APIResponseBase();
+        try{
+            session.invalidate();
+            responseBase.setAPIStatus(Constants.APIStatus.OK_LOGOUT);
+        }catch (Exception e){
+            e.printStackTrace();
+            responseBase.setAPIStatus(Constants.APIStatus.ERR_ANY);
+        }
+
+        return responseBase;
     }
 
 }

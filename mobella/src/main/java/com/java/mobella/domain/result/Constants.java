@@ -4,9 +4,9 @@ public class Constants {
     public enum APIStatus {
 
         OK("0",""),
-        OK_LOGOUT("0","ログアウトしました"),
+        OK_LOGOUT("0","Logout successfully"),
 
-        ERR_NO_SESSION("1","ログインしてください"),
+        ERR_NO_SESSION("1","No session found"),
         ERR_LOGIN_FAILED("2","Login Error"),
         //huantn add
         ERR_LOGIN_FAILED_TOKEN("3","ログイントークンなし"),
@@ -14,8 +14,9 @@ public class Constants {
         //end huantn
         WARN_RE_OPERATION("10","データが古いため、再度操作してください。"),
 
+        ERR_PARAM("99", "Not found param"),
         ERR_ANY("100","Error"),
-        ERR_DATA_SEARCH("101","検索処理が失敗しました"),
+        ERR_DATA_SEARCH("101","Not found result"),
         ERR_DATA_INSERT("102","データが登録できませんでした"),
         ERR_DATA_UPDATE("103","データが更新できませんでした"),
         ERR_DATA_DELETE("104","データが削除できませんでした"),
@@ -49,5 +50,10 @@ public class Constants {
     public static final String SESSION_DATA_USER_ID = "user_id";
     public static final String SESSION_DATA_USERNAME = "username";
     public static final String SESSION_DATA_LOGIN = "login";
+
+    public static final String LOG_D_API_START = "API START";
+    public static final String LOG_D_API_END = "API END";
+    public static final String LOG_D_SERVICE_START = "SERVICE START";
+    public static final String LOG_D_SERVICE_END = "SERVICE END";
 
 }

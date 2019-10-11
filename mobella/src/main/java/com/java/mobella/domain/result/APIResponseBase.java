@@ -1,5 +1,8 @@
 package com.java.mobella.domain.result;
 
+import lombok.Data;
+
+@Data
 public class APIResponseBase {
 
     private String message;
