@@ -3,23 +3,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.java.mobella.mapper.MomentMapper">
     <select id="getLstMoment" resultType="com.java.mobella.domain.reponsitory.Moment">
-        select * from moment
+        select * from moments
     </select>
     <select id="getMomentById" resultType="com.java.mobella.domain.reponsitory.Moment" parameterType="Integer">
-        select * from moment where id = #{id}
+        select * from moments where id = #{id}
     </select>
     <insert id="insertMoment" parameterType="com.java.mobella.domain.reponsitory.Moment">
-        insert into moment(content, img, like_status, author, created_at)
-        values (#{content}, #{img}, #{like_status}, #{author}, current_timestamp)
+        insert into moments(content, img, status_accept,likes,  author_id, createdAt)
+        values (#{content}, #{img}, #{status_accept},#{likes}, #{author_id}, current_timestamp)
     </insert>
     <update id="updateMoment" parameterType="com.java.mobella.domain.reponsitory.Moment">
-        update moment set content = #{content}, img = #{img}, like_status = #{like_status}, author = #{author}, updated_at = current_timestamp
+        update moments set content = #{content},likes = #{likes}, img = #{img}, status_accept = #{status_accept}, author_id = #{author_id}, updatedAt = current_timestamp, createdAt = current_timestamp
         where id = #{id}
     </update>
     <delete id="deleteMoment" parameterType="Integer">
-        delete from moment where id = #{id}
+        delete from moments where id = #{id}
     </delete>
     <select id="searchMoment" parameterType="String" resultType="com.java.mobella.domain.reponsitory.Moment">
-        select * from moment where content like #{searchContent} or author like #{searchContent}
+        select * from moments where content like #{searchContent} or author like #{searchContent}
     </select>
 </mapper>

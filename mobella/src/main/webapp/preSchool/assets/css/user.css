@@ -1,0 +1,57 @@
+#userTable tr{
+    height: 40px;
+}
+#userTable{
+}
+.dataTables_wrapper{
+    padding: 30px;
+    font-size: 15px;
+}
+.button {
+    background-color: #FF00FF;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 30px;
+    cursor: pointer;
+    float: right;
+}
+
+input{
+    font-size: 15px !important;
+}
+
+#userTable thead th {
+    text-align: center !important;
+    vertical-align: middle;
+}
+
+#formClass{
+    margin-top: 20px;
+    width: 70%;
+    margin: auto;
+    font-size: 20px;
+}
+#optionTeacher, #optionSchool{
+    font-size: 15px;
+    height: 35px;
+}
+footer{
+    display: none;
+}
+
+.tox-notification, .tox-statusbar__branding{
+    display: none !important;
+}
+
+.disable{
+    display: none;
+}
+
+.btn-delete, .btn-edit{
+    cursor: pointer;
+}

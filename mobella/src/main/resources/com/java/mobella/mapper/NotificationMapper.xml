@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.mobella.mapper.NotificationMapper">
+    <select id="getNotifications" resultType="com.java.mobella.domain.reponsitory.Notification">
+        select * from notifications
+    </select>
+
+    <select id="getNotification" resultType="com.java.mobella.domain.reponsitory.Notification" parameterType="Integer">
+        select * from notifications where id = #{id}
+    </select>
+
+    <select id="searchNotification" parameterType="String" resultType="com.java.mobella.domain.reponsitory.Notification">
+        select * from notifications where title like #{searchContent} or content like #{searchContent}
+    </select>
+
+    <insert id="insertNotification" parameterType="com.java.mobella.domain.reponsitory.Notification">
+        insert into notifications(title, author, content, img, notice_class, createdAt)
+        values (#{title}, #{author}, #{content}, #{img}, #{notice_class}, current_timestamp )
+    </insert>
+
+    <update id="updateNotification" parameterType="com.java.mobella.domain.reponsitory.Notification">
+        update notifications set title = #{title}, content = #{content}, updatedAt = current_timestamp, notice_class = #{notice_class} where id = #{id}
+    </update>
+
+    <delete id="deleteNotification" parameterType="Integer">
+        delete from notifications where id = #{id}
+    </delete>
+</mapper>

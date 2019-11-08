@@ -4,14 +4,20 @@
 <mapper namespace="com.java.mobella.mapper.LoginMapper">
 
     <select id="getPassword" parameterType="String" resultType="String">
-        select password from user where username = #{username}
+        select password from users where username = #{username}
     </select>
     <select id="login" parameterType="String" resultType="com.java.mobella.domain.reponsitory.User">
-        select * from user where username = #{username} and password = #{password}
+        select * from users where username = #{username} and password = #{password}
     </select>
     <insert id="insertLastLogin" parameterType="com.java.mobella.domain.reponsitory.User">
-        insert into last_login(is_boss, is_admin, is_teacher, is_parent, id_grant, login_log)
-                values (#{is_boss}, #{is_admin}, #{is_teacher}, #{is_parent}, #{id_grant}, current_timestamp )
+        insert into logs(user_id, createdAt, updatedAt)
+                values (#{user_id}, current_timestamp, current_timestamp)
     </insert>
+    <insert id="register" parameterType="com.java.mobella.domain.reponsitory.User">
+        insert into users(username, password, role, createdAt) values (#{username}, #{password}, #{role}, current_timestamp)
+    </insert>
+    <update id="updateUser" parameterType="com.java.mobella.domain.reponsitory.User">
+        update users set password = #{password}, role = #{role}, updatedAt = current_timestamp where id = #{id}
+    </update>
 
 </mapper>

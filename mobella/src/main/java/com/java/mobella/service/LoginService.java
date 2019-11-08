@@ -1,6 +1,6 @@
 package com.java.mobella.service;
 
-import com.java.mobella.domain.reponsitory.LastLogin;
+import com.java.mobella.domain.reponsitory.Logs;
 import com.java.mobella.domain.reponsitory.User;
 import com.java.mobella.domain.result.APIResponseBase;
 import com.java.mobella.domain.result.Constants;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 
 @Service
 public class LoginService {
@@ -28,17 +27,13 @@ public class LoginService {
         try {
             String password1 = loginMapper.getPassword(user.getUsername());
             if (user.getPassword().equals(password1)) {
-                session.setAttribute(Constants.SESSION_DATA_USER_ID, user.getId());
-                session.setAttribute(Constants.SESSION_DATA_USERNAME, user.getUsername());
-                session.setAttribute(Constants.SESSION_DATA_LOGIN, "OK");
                 User userLogin = loginMapper.login(user.getUsername(), user.getPassword());
-                LastLogin lastLogin = new LastLogin();
-                lastLogin.setId_grant(userLogin.getId());
-                lastLogin.setIs_admin(userLogin.getIs_admin());
-                lastLogin.setIs_boss(userLogin.getIs_boss());
-                lastLogin.setIs_parent(userLogin.getIs_parent());
-                lastLogin.setIs_teacher(userLogin.getIs_teacher());
-                loginMapper.insertLastLogin(lastLogin);
+                session.setAttribute(Constants.SESSION_DATA_USER_ID, userLogin.getId());
+                session.setAttribute(Constants.SESSION_DATA_USERNAME, userLogin.getUsername());
+                session.setAttribute(Constants.SESSION_DATA_LOGIN, "OK");
+                Logs logs = new Logs();
+                logs.setUser_id(userLogin.getId());
+                loginMapper.insertLastLogin(logs);
                 responseBase.setAPIStatus(Constants.APIStatus.OK);
             } else {
                 responseBase.setAPIStatus(Constants.APIStatus.ERR_LOGIN_FAILED);
@@ -50,5 +45,22 @@ public class LoginService {
         logger.debug("Service end");
 
         return responseBase;
+    }
+
+    public APIResponseBase registerOrUpdate(User user){
+        logger.debug("Service start");
+
+        APIResponseBase res = new APIResponseBase();
+        try{
+            if (user.getId() > 0)
+                loginMapper.updateUser(user);
+            else
+                loginMapper.register(user);
+            res.setAPIStatus(Constants.APIStatus.OK);
+        } catch (Exception e){
+            res.setAPIStatus(Constants.APIStatus.ERR_ANY);
+            e.printStackTrace();
+        }
+        return res;
     }
 }

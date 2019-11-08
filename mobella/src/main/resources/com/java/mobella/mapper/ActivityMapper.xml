@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.mobella.mapper.ActivityMapper">
+    <select id="getActivities" resultType="com.java.mobella.domain.reponsitory.Activity">
+        select * from activities_management
+    </select>
+
+    <select id="getActivity" resultType="com.java.mobella.domain.reponsitory.Activity" parameterType="Integer">
+        select * from activities_management where id = #{id}
+    </select>
+
+    <insert id="insertActivity" parameterType="com.java.mobella.domain.reponsitory.Activity">
+        INSERT INTO activities_management
+        (title,
+        acti_time_from,
+        acti_time_to,
+        regis_time_from,
+        regis_time_to,
+        notice_class,
+        content,
+        regis_status,
+        img,
+        createdAt)
+        VALUES
+        (#{title},
+        #{acti_time_from},
+        #{acti_time_to},
+        #{regis_time_from},
+        #{regis_time_to},
+        #{notice_class},
+        #{content},
+        #{regis_status},
+        #{img},
+        current_timestamp)
+    </insert>
+
+    <update id="updateActivity" parameterType="com.java.mobella.domain.reponsitory.Activity">
+        UPDATE activities_management
+        SET
+        title = #{title},
+        acti_time_from = #{acti_time_from},
+        acti_time_to = #{acti_time_to},
+        regis_time_from = #{regis_time_from},
+        regis_time_to = #{regis_time_to},
+        notice_class = #{notice_class},
+        content = #{content},
+        regis_status = #{regis_status},
+        img = #{img},
+        updatedAt = CURRENT_TIMESTAMP
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delteActivity" parameterType="Integer">
+        delete from activities_management where id = #{id}
+    </delete>
+
+    <select id="searchActivities" parameterType="String" resultType="com.java.mobella.domain.reponsitory.Activity">
+        select * from activity where title like #{searchContent} or content like #{searchContent}
+    </select>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.mobella.mapper.StudentMapper">
+    <select id="getStudents" resultType="com.java.mobella.domain.reponsitory.Student">
+        select * from students
+    </select>
+
+    <select id="getStudent" resultType="com.java.mobella.domain.reponsitory.Student" parameterType="Integer">
+        select * from students where id = #{id}
+    </select>
+
+    <select id="searchStudent" parameterType="String" resultType="com.java.mobella.domain.reponsitory.Student">
+        select * from students where last_name like #{searchContent} or first_name like #{searchContent}
+    </select>
+
+    <insert id="insertStudent" parameterType="com.java.mobella.domain.reponsitory.Student">
+        insert into students(last_name, first_name, gender, birthday, address, parent_id, grade, class_id, school_id, avatar, is_delete, createdAt)
+        values (#{last_name}, #{first_name}, #{gender}, #{birthday}, #{address}, #{parent_id}, #{grade}, #{class_id}, #{school_id}, #{avatar}, #{is_delete}, current_timestamp )
+    </insert>
+
+    <update id="updateStudent" parameterType="com.java.mobella.domain.reponsitory.Student">
+        update students set last_name = #{last_name}, first_name = #{first_name}, birthday = #{birthday}, address = #{address},grade = #{grade}, avatar = #{avatar}, is_delete = #{is_delete}, updatedAt = current_timestamp where id = #{id}
+    </update>
+
+    <delete id="deleteStudent" parameterType="Integer">
+        delete from students where id = #{id}
+    </delete>
+</mapper>

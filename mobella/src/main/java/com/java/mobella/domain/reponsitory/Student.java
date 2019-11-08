@@ -12,12 +12,12 @@ public class Student {
     private int gender;
     private Date birthday;
     private String address;
-    private int parent;
-    private int school_year;
+    private int grade;
+    private int parent_id;
+    private int school_id;
     private int class_id;
-    private int school;
     private int is_delete;
     private String avatar;
-    private Date created_at;
-    private Date updated_at;
+    private Date createdAt;
+    private Date updatedAt;
 }

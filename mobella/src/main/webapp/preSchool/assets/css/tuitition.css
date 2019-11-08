@@ -1,0 +1,53 @@
+#tuititionTable tr{
+    height: 40px;
+}
+.dataTables_wrapper{
+    padding: 30px;
+    font-size: 15px;
+}
+.button {
+    background-color: #FF00FF;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 30px;
+    cursor: pointer;
+}
+
+input, select{
+    font-size: 15px !important;
+}
+
+#tuititionTable thead th {
+    text-align: center !important;
+    vertical-align: middle;
+}
+
+#formTuitition{
+    margin-top: 20px;
+    margin: auto;
+    font-size: 20px;
+}
+#optionTeacher, #optionSchool{
+    font-size: 15px;
+    height: 35px;
+}
+footer{
+    display: none;
+}
+
+.tox-notification, .tox-statusbar__branding{
+    display: none !important;
+}
+
+.disable_moment{
+    display: none;
+}
+
+.btn-delete, .btn-edit{
+    cursor: pointer;
+}
