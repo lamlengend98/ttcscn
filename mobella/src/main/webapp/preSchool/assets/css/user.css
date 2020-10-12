@@ -55,3 +55,4 @@ footer{
 .btn-delete, .btn-edit{
     cursor: pointer;
 }
+.rc-anchor-alert{display: none !important;}

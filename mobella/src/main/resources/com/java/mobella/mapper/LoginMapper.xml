@@ -3,21 +3,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.java.mobella.mapper.LoginMapper">
 
-    <select id="getPassword" parameterType="String" resultType="String">
-        select password from users where username = #{username}
+    <select id="getPassword" parameterType="String" resultType="com.java.mobella.domain.reponsitory.User">
+        select id, password from user where username = #{username}
     </select>
-    <select id="login" parameterType="String" resultType="com.java.mobella.domain.reponsitory.User">
-        select * from users where username = #{username} and password = #{password}
+    <select id="verifyAccount" parameterType="com.java.mobella.domain.reponsitory.User" resultType="com.java.mobella.domain.reponsitory.User">
+        select * from user where username = #{username} and email = #{email}
+    </select>
+    <select id="login" parameterType="Integer" resultType="com.java.mobella.domain.reponsitory.User">
+        select * from user where id=#{id}
     </select>
     <insert id="insertLastLogin" parameterType="com.java.mobella.domain.reponsitory.User">
         insert into logs(user_id, createdAt, updatedAt)
                 values (#{user_id}, current_timestamp, current_timestamp)
     </insert>
     <insert id="register" parameterType="com.java.mobella.domain.reponsitory.User">
-        insert into users(username, password, role, createdAt) values (#{username}, #{password}, #{role}, current_timestamp)
+        insert into user(username, password, role, created_at, email, address, phone) values (#{username}, #{password}, #{role}, current_timestamp, #{email}, #{address}, #{phone})
     </insert>
     <update id="updateUser" parameterType="com.java.mobella.domain.reponsitory.User">
-        update users set password = #{password}, role = #{role}, updatedAt = current_timestamp where id = #{id}
+        update user set password = #{password}, role = #{role}, updatedAt = current_timestamp where id = #{id}
+    </update>
+    <update id="resetPassword" parameterType="com.java.mobella.domain.reponsitory.User">
+        update user set password = #{password} where username = #{username} and email = #{email}
     </update>
 
 </mapper>

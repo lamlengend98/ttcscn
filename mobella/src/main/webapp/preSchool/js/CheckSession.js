@@ -1,17 +1,43 @@
 $(document).ready(function(){
-    var accessKey = $.cookie("accessKey");
-    if(accessKey == undefined || accessKey == null){
-        alert("Vui lòng đăng nhập");
-        window.location.href = "./login.html";
-    } else {
-        var role = $.cookie("userRole");
-        if(role == 10){
-            $("#school").hide();
-        }
-        if(role != 10 && role != 13){
-            alert("You have no permission for accessing to website");
-            $.removeCookie("accessKey")
+    function baseAjax(method, url, param, accesskey) {
+        var urlAjax = "http://localhost:8080/" + url;
+        var response;
+        $.ajax({
+            method: method,
+            url: urlAjax,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer '+accesskey)
+            },
+            data: param,
+            async: false,
+            success: function (success) {
+                response = success;
+            },
+            error: function () {
+                response = "error";
+            }
+        });
+
+        return response;
+    }
+    var token = sessionStorage.getItem("token");
+    console.log(token)
+    if(token === undefined || token == null || token === ''){
+        if(window.location.href.indexOf("login") < 0) {
+            alert("Vui lòng đăng nhập");
             window.location.href = "./login.html";
+        }
+    } else {
+        const response = baseAjax('POST', 'checkToken', {token: token})
+        if (response.status != "0") {
+            if(window.location.href.indexOf("login") < 0) {
+                alert("Vui lòng đăng nhập");
+                window.location.href = "./login.html";
+            }
+        } else {
+            if(window.location.href.indexOf("login") > 0) {
+                window.location.href = "./dashboard.html";
+            }
         }
     }
 

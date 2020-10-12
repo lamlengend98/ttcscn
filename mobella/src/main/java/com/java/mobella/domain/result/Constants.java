@@ -7,9 +7,10 @@ public class Constants {
         OK_LOGOUT("0","Logout successfully"),
 
         ERR_NO_SESSION("1","No session found"),
-        ERR_LOGIN_FAILED("2","Login Error"),
+        ERR_LOGIN_FAILED("2","Thông tin đăng nhập không chính xác"),
         //huantn add
         ERR_LOGIN_FAILED_TOKEN("3","ログイントークンなし"),
+        ERR_WRONG_PASSWORD("4","Wrong pass!!!"),
         ERR_NOTHING("-1","No Thing"),
         //end huantn
         WARN_RE_OPERATION("10","データが古いため、再度操作してください。"),
@@ -49,6 +50,7 @@ public class Constants {
     }
     public static final String SESSION_DATA_USER_ID = "user_id";
     public static final String SESSION_DATA_USERNAME = "username";
+    public static final String SESSION_DATA_ROLE = "role";
     public static final String SESSION_DATA_LOGIN = "login";
 
     public static final String LOG_D_API_START = "API START";

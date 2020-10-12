@@ -50,64 +50,22 @@
                 </a>
             </div>
             <ul class="nav">
-                <li>
+                <li class="nav-item">
                     <a class="nav-link" href="dashboard.html">
                         <i class="nc-icon nc-chart-pie-35"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item" id="school">
-                    <a class="nav-link" href="school.html">
-                        <i class="nc-icon nc-chart-pie-35"></i>
-                        <p>School</p>
-                    </a>
-                </li>
-                <li class="nav-item" id="classes">
-                    <a class="nav-link" href="class.html">
-                        <i class="nc-icon nc-chart-pie-35"></i>
-                        <p>Classes</p>
-                    </a>
-                </li>
-                <li class="nav-item active" id="listUser">
+                <li class="nav-item active">
                     <a class="nav-link" href="./user.html">
                         <i class="nc-icon nc-circle-09"></i>
-                        <p>List User</p>
+                        <p>Update info</p>
                     </a>
                 </li>
-                <li class="nav-item" id="activities">
-                    <a class="nav-link" href="./activities.html">
+                <li class="nav-item" id="password">
+                    <a class="nav-link" href="password.html">
                         <i class="nc-icon nc-notes"></i>
-                        <p>Activities</p>
-                    </a>
-                </li>
-                <li class="nav-item" id="moments">
-                    <a class="nav-link" href="./moments.html">
-                        <i class="nc-icon nc-atom"></i>
-                        <p>Moments</p>
-                    </a>
-                </li>
-                <li class="nav-item" id="notify">
-                    <a class="nav-link" href="./notifications.html">
-                        <i class="nc-icon nc-paper-2"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-                <li class="nav-item" id="mealType">
-                    <a class="nav-link" href="./meal_type.html">
-                        <i class="nc-icon nc-paper-2"></i>
-                        <p>Meal Type</p>
-                    </a>
-                </li>
-                <li class="nav-item" id="absense">
-                    <a class="nav-link" href="./absense.html">
-                        <i class="nc-icon nc-paper-2"></i>
-                        <p>Absense</p>
-                    </a>
-                </li>
-                <li class="nav-item" id="statistical">
-                    <a class="nav-link" href="./statistical.html">
-                        <i class="nc-icon nc-paper-2"></i>
-                        <p>Statistical</p>
+                        <p>Update Password</p>
                     </a>
                 </li>
             </ul>
@@ -185,26 +143,25 @@
         <!-- End Navbar -->
         <div class="content">
             <div class="container-fluid">
-                <select id="userOption" style="margin-bottom: 50px">
-<!--                    <option value="1">User</option>-->
-                    <option value="2">Teacher</option>
-                    <option value="3">Parent</option>
-                    <option value="4">Student</option>
-                </select>
-
-                <table style="width: 100%;text-align: center" id="usersTable" class="table table-hover table-striped">
-                    <button id="addUser" class="button">Add Teacher</button>
-
-                </table>
-                <div id="inputUser"></div>
-                <table style="width: 100%;text-align: center" id="parentTable" class="table table-hover table-striped">
-                    <button id="addParent" class="button disable">Add Parent</button>
-                </table>
-                <div id="inputParent"></div>
-                <table style="width: 100%;text-align: center" id="studentTable" class="table table-hover table-striped">
-                    <button id="addStudent" class="button disable">Add Student</button>
-                </table>
-                <div id="inputStudent"></div>
+                <div style="margin-bottom: 1%">
+                    <span class="no-icon">Username</span>
+                    <input type="text" class="form-control" style="width: 50%" id="username" disabled>
+                </div>
+                <div style="margin-bottom: 1%">
+                    <span class="no-icon">Email</span>
+                    <input type="text" class="form-control" style="width: 50%" id="email" disabled>
+                </div>
+                <div style="margin-bottom: 1%">
+                    <span class="no-icon">Address</span>
+                    <input type="text" class="form-control" style="width: 50%" id="address">
+                </div>
+                <div style="margin-bottom: 1%">
+                    <span class="no-icon">Phone</span>
+                    <input type="text" class="form-control" style="width: 50%" id="phone">
+                </div>
+                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                <br/>
+                <button class="btn btn-info" id="btn-update">Update</button>
             </div>
         </div>
         <!--   -->
@@ -303,8 +260,12 @@
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
-<script src="../js/Logout.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+</script>
 <script src="../js/CheckSession.js"></script>
+<script src="../js/Logout.js"></script>
+<!--<script src="../js/CheckSession.js"></script>-->
 <script src="../js/user.js"></script>
 <script src="../assets/js/jquery.cookie.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>

@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 @Mapper
 public interface LoginMapper {
-    public User login(String username, String password);
-    public String getPassword(String username);
+    public User login(Integer id);
+    public User getPassword(String username);
     public void insertLastLogin(Logs logs);
     public void register(User user);
     public void updateUser(User user);
+    public User verifyAccount(User user);
+    public void resetPassword(User user);
 }

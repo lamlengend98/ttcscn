@@ -22,6 +22,7 @@ $(document).ready(function () {
 
         return response;
     }
+
     function baseAjax2(method, url, param, accesskey) {
         var urlAjax = "http://localhost:8080/" + url;
         var response;
@@ -45,14 +46,16 @@ $(document).ready(function () {
 
         return response;
     }
+
     var id = 0;
     initUser();
+
     function initUser() {
         const token = sessionStorage.getItem("token")
         console.log(token)
         var response = baseAjax("GET", "user", {}, token);
         console.log(response)
-        if(response.status == "0") {
+        if (response.status == "0") {
             const user = response.result.user;
             $("#username").val(user.username)
             $("#email").val(user.email)
@@ -63,24 +66,29 @@ $(document).ready(function () {
     }
 
     $("#btn-update").click(() => {
-        var username = $("#username").val()
-        var email = $("#email").val()
-        var address = $("#address").val()
-        var phone = $("#phone").val()
+        var password = $("#new-pass").val()
+        var oldpassword = $("#old-pass").val()
+        var copassword = $("#co-pass").val()
+
+        var regexPassword = new RegExp(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/);
+        if (password !== copassword) {
+            alert("Mật khẩu không trùng khớp!!!!")
+            return
+        }
         const user = {
-            username: username,
-            email: email,
-            address: address,
-            phone: phone,
-            id: id
+            id: id,
+            password: password,
+            oldPassword: oldpassword
         }
         console.log(user)
         const token = sessionStorage.getItem("token")
         console.log(token)
-        var response = baseAjax2("POST", "user", user, token);
+        var response = baseAjax2("PUT", "update-password", user, token);
         console.log(response)
-        if(response.status == "0") {
+        if (response.status == "0") {
             alert("Update thông tin thành công!!!!")
+        } else if (response.status == "4") {
+            alert("Sai mật khẩu!!!!")
         } else {
             alert("Update thông tin không thành công!!!!")
         }

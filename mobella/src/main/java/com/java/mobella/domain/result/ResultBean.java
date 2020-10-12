@@ -16,4 +16,8 @@ public class ResultBean {
     private Notification notification;
     private Student student;
     private List<Student> lstStudent;
+    private String token;
+    private Integer id;
+    private String oldPassword;
+    private String password;
 }
